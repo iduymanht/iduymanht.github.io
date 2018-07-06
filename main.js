@@ -68,7 +68,7 @@ peer = new Peer({
     debug: 3
 });
 */
-
+/*
 let customConfig;
 
 $.ajax({
@@ -87,7 +87,7 @@ $.ajax({
     console.log(customConfig);
   },
   async: false
-});
+});*/
 
 
 const peer = new Peer({ 
@@ -95,7 +95,9 @@ const peer = new Peer({
     host: 'test-peerjs-eas.herokuapp.com', 
     secure: true, 
     port: 443, 
-    //config: customConfig 
+    config: {'iceServers': [
+            { url: 'stun:stun1.l.google.com:19302' }
+			]}
 });
 /*
 const peer = new Peer({
