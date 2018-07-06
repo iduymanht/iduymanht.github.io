@@ -57,14 +57,25 @@ function openStream(){
 function playStream(idVideoTag, stream){
 	const video = document.getElementById(idVideoTag);
 	video.srcObject = stream;
-	video.play();
+	//video.play();
 }
 
 
 //ket noi server peerjs
+/*
 peer = new Peer({
     key: '027c73ac-bdb3-41da-a0c0-e3f257ff6c10',
     debug: 3
+});
+*/
+
+
+const peer = new Peer({ 
+    key: 'peerjs', 
+    host: 'test-peerjs-eas.herokuapp.com', 
+    secure: true, 
+    port: 443, 
+    //config: customConfig 
 });
 /*
 const peer = new Peer({
@@ -101,7 +112,7 @@ $('#btnCall').click(() => {
         });
 });
 
-//Callee
+//get call
 peer.on('call', call => {
     openStream()
         .then(stream => {
