@@ -62,6 +62,11 @@ function playStream(idVideoTag, stream){
 
 
 //ket noi server peerjs
+peer = new Peer({
+    key: '027c73ac-bdb3-41da-a0c0-e3f257ff6c10',
+    debug: 3
+});
+/*
 const peer = new Peer({
     key: 'peerjs',
     host: 'test-peerjs-eas.herokuapp.com',
@@ -72,7 +77,7 @@ const peer = new Peer({
             { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
         ]}
  }                    
-);
+);*/
 
 peer.on('open', id => {
 	console.log("open width id: "+id);
