@@ -89,15 +89,16 @@ $.ajax({
   async: false
 });*/
 
-
+var pc_config = {"iceServers": [
+				{url: "stun:stun1.l.google.com:19302"},
+                {url:"turn:eas@18.182.87.106", credential: "credential", username:"eas2018"}
+		]};
 const peer = new Peer({ 
     key: 'peerjs', 
     host: 'test-peerjs-eas.herokuapp.com', 
     secure: true, 
     port: 443, 
-    config: {'iceServers': [
-            { url: 'stun:stun1.l.google.com:19302' }
-			]}
+    config: pc_config
 });
 /*
 const peer = new Peer({
