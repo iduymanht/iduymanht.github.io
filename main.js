@@ -1,4 +1,5 @@
 const socket = io('https://peer-eas-server.herokuapp.com/');
+var peerIdMe = "";
 
 //----------------------SOCKET-----------------------
 socket.on('DANH_SACH_ONLINE', arrUser => {
@@ -30,12 +31,14 @@ function loadUser(arrUser){
 	arrUser.forEach(user => {
 		console.log(user);
 		const {ten, peerId} = user;
+		console.log(peerIdMe+" -- "+ peerId);
+		if(peerIdMe !== peerId)
 		$('#listUser').append(`<li id="${peerId}">${ten}</li>`);
 	});
 }
 
 $('#listUser').on('click', 'li', function(){
-	//console.log($(this).attr('id'));
+	//console.log($(this).attr('id'));	
 	const id = $(this).attr('id');
 	console.log("call to :" +id);
 	openStream()
@@ -62,7 +65,7 @@ function playStream(idVideoTag, stream){
 
 
 var pc_config = {"iceServers": [
-				{url: "stun:stun1.l.google.com:19302"},
+				/*{url: "stun:stun1.l.google.com:19302"},*/
                 {url:"turn:eas@18.182.87.106", credential: "credential", username:"eas2018"}
 		]};
 const peer = new Peer({ 
@@ -75,6 +78,7 @@ const peer = new Peer({
 
 
 peer.on('open', id => {
+	peerIdMe = id;
 	console.log("open width id: "+id);
     $('#my-peer').append(id);
 	
