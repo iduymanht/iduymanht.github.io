@@ -66,7 +66,7 @@ function playStream(idVideoTag, stream){
 
 var pc_config = {"iceServers": [
 				/*{url: "stun:stun1.l.google.com:19302"},*/
-                {url:"turn:eas@18.182.87.106", credential: "credential", username:"eas2018"}
+                {url:"turn:eas@18.182.87.106?transport=tcp", credential: "credential", username:"eas2018"}
 		]};
 const peer = new Peer({ 
     key: 'peerjs', 
