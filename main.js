@@ -42,8 +42,8 @@ $('#listUser').on('click', 'li', function(){
 	.then(stream => {
 		playStream("localStream", stream);
 		var call = peer.call(id, stream);
-		call.on("stream", remoteStream=> playStream("remoteStream",stream));
-	});
+		//call.on("stream", remoteStream=> playStream("remoteStream",stream));
+    });
 });
 
 
@@ -61,34 +61,6 @@ function playStream(idVideoTag, stream){
 }
 
 
-//ket noi server peerjs
-/*
-peer = new Peer({
-    key: '027c73ac-bdb3-41da-a0c0-e3f257ff6c10',
-    debug: 3
-});
-*/
-/*
-let customConfig;
-
-$.ajax({
-  url: "https://service.xirsys.com/ice",
-  data: {
-    ident: "vanpho",
-    secret: "2b1c2dfe-4374-11e7-bd72-5a790223a9ce",
-    domain: "vanpho93.github.io",
-    application: "default",
-    room: "default",
-    secure: 1
-  },
-  success: function (data, status) {
-    // data.d is where the iceServers object lives
-    customConfig = data.d;
-    console.log(customConfig);
-  },
-  async: false
-});*/
-
 var pc_config = {"iceServers": [
 				{url: "stun:stun1.l.google.com:19302"},
                 {url:"turn:eas@18.182.87.106", credential: "credential", username:"eas2018"}
@@ -100,18 +72,7 @@ const peer = new Peer({
     port: 443, 
     config: pc_config
 });
-/*
-const peer = new Peer({
-    key: 'peerjs',
-    host: 'test-peerjs-eas.herokuapp.com',
-    secure: true,
-    port: 443,
-    config: {'iceServers': [
-            { url: 'stun:stun1.l.google.com:19302' },
-            { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
-        ]}
- }                    
-);*/
+
 
 peer.on('open', id => {
 	console.log("open width id: "+id);
@@ -125,6 +86,7 @@ peer.on('open', id => {
 });
 
 //Caller
+/*
 $('#btnCall').click(() => {
     const id = $('#remoteId').val();
     openStream()
@@ -133,7 +95,7 @@ $('#btnCall').click(() => {
             const call = peer.call(id, stream);
             call.on('stream', remoteStream => playStream('remoteStream', remoteStream));
         });
-});
+});*/
 
 //get call
 peer.on('call', call => {
