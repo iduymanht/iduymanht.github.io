@@ -42,7 +42,7 @@ $('#listUser').on('click', 'li', function(){
 	.then(stream => {
 		playStream("localStream", stream);
 		var call = peer.call(id, stream);
-		//call.on("stream", remoteStream=> playStream("remoteStream",stream));
+		call.on("stream", remoteStream=> playStream("remoteStream",remoteStream));
     });
 });
 
