@@ -63,11 +63,16 @@ function playStream(idVideoTag, stream){
 	//video.play();
 }
 
+/*
+var pc_config = {"iceServers": [
+				{url: "stun:stun1.l.google.com:19302"},
+                {url:"turn:18.182.87.106", credential: "cinamon", username:"eas2018"}
+		]};*/
 
 var pc_config = {"iceServers": [
-				/*{url: "stun:stun1.l.google.com:19302"},*/
-                {url:"turn:18.182.87.106?transport=tcp", credential: "cinamon", username:"eas2018"}
-		]};
+	{"url": "stun:stun.l.google.com:19302"},
+	{"url":"turn:18.182.87.106:5349?transport=tcp", username:'cinamon',credential:"eas2018"}
+]};
 const peer = new Peer({ 
     key: 'peerjs', 
     host: 'test-peerjs-eas.herokuapp.com', 
