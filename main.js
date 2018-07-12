@@ -1,5 +1,6 @@
 const socket = io('https://peer-eas-server.herokuapp.com/');
 var peerIdMe = "";
+let peer = null;
 
 //----------------------SOCKET-----------------------
 socket.on('DANH_SACH_ONLINE', arrUser => {
@@ -42,9 +43,9 @@ $('#listUser').on('click', 'li', function(){
 	const id = $(this).attr('id');
 	console.log("call to :" +id);
 	openStream()
-	.then(stream => {
-		playStream("localStream", stream);
-		var call = peer.call(id, stream);
+	.then(localStream => {
+		playStream("localStream", localStream);
+		var call = peer.call(id, localStream);
 		call.on("stream", remoteStream=> playStream("remoteStream",remoteStream));
     });
 });
@@ -73,7 +74,7 @@ var pc_config = {"iceServers": [
 	{"url": "stun:stun.l.google.com:19302"},
 	{"url":"turn:18.182.87.106:5349?transport=tcp", username:'cinamon',credential:"eas2018"}
 ]};
-const peer = new Peer({ 
+peer = new Peer({ 
     key: 'peerjs', 
     host: 'test-peerjs-eas.herokuapp.com', 
     secure: true, 
